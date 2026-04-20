@@ -1,0 +1,109 @@
+///interfaz
+ackage Taller1.deitell13.interfaz;
+import javax.swing.JOptionPane;
+import Taller1.deitell13.negocio.empleado;
+
+public class Pruebaempleado {
+
+    public static void main(String[] args) {
+
+        String nombre1 = JOptionPane.showInputDialog(
+                "Ingrese el nombre del primer empleado:"
+        );
+        String apellido1 = JOptionPane.showInputDialog(
+                "Ingrese el apellido del primer empleado:"
+        );
+        double salario1 = Double.parseDouble(
+                JOptionPane.showInputDialog(
+                        "Ingrese el salario mensual del primer empleado:"
+                )
+        );
+
+        empleado emp1 = new empleado(nombre1, apellido1, salario1);
+
+        String nombre2 = JOptionPane.showInputDialog(
+                "Ingrese el nombre del segundo empleado:"
+        );
+        String apellido2 = JOptionPane.showInputDialog(
+                "Ingrese el apellido del segundo empleado:"
+        );
+        double salario2 = Double.parseDouble(
+                JOptionPane.showInputDialog(
+                        "Ingrese el salario mensual del segundo empleado:"
+                )
+        );
+
+        empleado emp2 = new empleado(nombre2, apellido2, salario2);
+
+        JOptionPane.showMessageDialog(
+                null,
+                "SALARIO ANUAL\n\n" +
+                        emp1.getNombre() + ": $" + emp1.getAnualsalario() + "\n" +
+                        emp2.getNombre() + ": $" + emp2.getAnualsalario()
+        );
+
+        emp1.aSalario(0.10);
+        emp2.aSalario(0.10);
+
+        JOptionPane.showMessageDialog(
+                null,
+                "SALARIO ANUAL CON AUMENTO (10%)\n\n" +
+                        emp1.getNombre() + ": $" + emp1.getAnualsalario() + "\n" +
+                        emp2.getNombre() + ": $" + emp2.getAnualsalario()
+        );
+    }
+}
+
+////negocio 
+package Taller1.deitell13.negocio;
+
+public class empleado {
+    private String nombre;
+    private String apellido;
+    private double salario;
+
+    public empleado(String nombre,String apellido, double salario) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        setSalario(salario);
+
+    }
+
+    public double getSalario() {
+        return salario;
+    }
+
+    public void setSalario(double salario) {
+        if (salario<0)
+            this.salario = salario;
+    }
+
+    public String getApellido() {
+        return apellido;
+    }
+
+    public void setApellido(String apellido) {
+        this.apellido = apellido;
+    }
+
+    public String getNombre() {
+        return nombre;
+    }
+
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
+    }
+
+    @Override
+    public String toString() {
+        return "Nombre=" + nombre +
+                "\nApellido=" + apellido +
+                "\nSalario=$" + salario ;
+    }
+    public double getAnualsalario(){
+        return salario*12;
+    }
+    public void aSalario(double porcentaje){
+        salario += salario*porcentaje;
+    }
+}
