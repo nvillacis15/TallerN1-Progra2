@@ -1,0 +1,73 @@
+///interfaz
+package Taller1.daitell14.interfaz;
+import Taller1.daitell14.negocio.fecha;
+import javax.swing.JOptionPane;
+public class PruebaFecha {
+
+    public static void main(String[] args) {
+
+        int mes = Integer.parseInt(
+                JOptionPane.showInputDialog("Ingrese el mes:")
+        );
+        int dia = Integer.parseInt(
+                JOptionPane.showInputDialog("Ingrese el día:")
+        );
+        int anio = Integer.parseInt(
+                JOptionPane.showInputDialog("Ingrese el año:")
+        );
+
+        fecha fecha = new fecha(mes, dia, anio);
+
+        JOptionPane.showMessageDialog(
+                null,
+                "La fecha ingresada es:\n" + fecha.mFecha()
+        );
+    }
+
+}
+
+//// negocio
+package Taller1.daitell14.negocio;
+
+public class fecha {
+
+    private int mes;
+    private int dia;
+    private int allo;
+
+    public fecha(int mes, int dia, int allo) {
+        this.mes = mes;
+        this.dia = dia;
+        this.allo = allo;
+
+    }
+
+    public int getMes() {
+        return mes;
+    }
+
+    public void setMes(int mes) {
+        this.mes = mes;
+    }
+
+    public int getDia() {
+        return dia;
+    }
+
+    public void setDia(int dia) {
+        this.dia = dia;
+    }
+
+    public int getallo() {
+        return allo;
+    }
+
+    public void setallo(int allo) {
+        this.allo = allo;
+    }
+
+    public String mFecha(){
+        return mes+"/"+dia+"/"+allo;
+    }
+
+}
