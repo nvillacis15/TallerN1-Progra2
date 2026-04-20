@@ -1,0 +1,100 @@
+///// negocio
+package negocio;
+
+import java.time.LocalDate;
+import java.time.Period;
+
+public class FrecuenciasCardiacas {
+
+    private String nombre;
+    private String apellido;
+    private int dia;
+    private int mes;
+    private int año;
+
+    public FrecuenciasCardiacas(String nombre, String apellido, int dia, int mes, int año) {
+        this.nombre = nombre;
+        this.apellido = apellido;
+        this.dia = dia;
+        this.mes = mes;
+        this.año = año;
+    }
+
+    public String getNombre() { return nombre; }
+    public String getApellido() { return apellido; }
+    public int getDia() { return dia; }
+    public int getMes() { return mes; }
+    public int getAño() { return año; }
+
+    public void setNombre(String nombre) { this.nombre = nombre; }
+    public void setApellido(String apellido) { this.apellido = apellido; }
+    public void setDia(int dia) { this.dia = dia; }
+    public void setMes(int mes) { this.mes = mes; }
+    public void setAño(int año) { this.año = año; }
+
+    public int calcularEdad() {
+        LocalDate nacimiento = LocalDate.of(año, mes, dia);
+        LocalDate hoy = LocalDate.now();
+        return Period.between(nacimiento, hoy).getYears();
+    }
+
+    public int frecuenciaMaxima() {
+        return 220 - calcularEdad();
+    }
+
+    public String frecuenciaEsperada() {
+        int max = frecuenciaMaxima();
+        return String.format("%.2f - %.2f", max * 0.50, max * 0.85);
+    }
+}
+
+
+//// interfaz 
+package interfaz;
+
+import java.util.Scanner;
+import negocio.FrecuenciasCardiacas;
+
+public class PruebaFrecuencias {
+
+    public static void main(String[] args) {
+
+        Scanner sc = new Scanner(System.in);
+
+        System.out.print("Nombre: ");
+        String nombre = sc.nextLine();
+
+        System.out.print("Apellido: ");
+        String apellido = sc.nextLine();
+
+        System.out.print("Día: ");
+        int dia = Integer.parseInt(sc.nextLine());
+
+        System.out.print("Mes: ");
+        int mes = Integer.parseInt(sc.nextLine());
+
+        System.out.print("Año: ");
+        int año = Integer.parseInt(sc.nextLine());
+
+
+        System.out.println("DEBUG → " + dia + "/" + mes + "/" + año);
+
+        FrecuenciasCardiacas persona =
+                new FrecuenciasCardiacas(nombre, apellido, dia, mes, año);
+
+        System.out.println("\n--- INFORMACIÓN ---");
+        System.out.println("Nombre: " + persona.getNombre());
+        System.out.println("Apellido: " + persona.getApellido());
+        System.out.println("Fecha de nacimiento: "
+                + persona.getDia() + "/"
+                + persona.getMes() + "/"
+                + persona.getAño());
+
+        System.out.println("\n--- RESULTADOS ---");
+        System.out.println("Edad: " + persona.calcularEdad());
+        System.out.println("Frecuencia máxima: " + persona.frecuenciaMaxima());
+        System.out.println("Rango esperado: " + persona.frecuenciaEsperada());
+
+        sc.close();
+    }
+}
