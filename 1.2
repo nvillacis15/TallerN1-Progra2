@@ -1,0 +1,31 @@
+interfaz
+package Taller1.deititell12.interfaz;
+
+import Taller1.deititell12.negocio.factura;
+
+import javax.swing.JOptionPane;
+import Taller1.deititell12.negocio.factura;
+
+public class PruebaFactura {
+
+    public static void main(String[] args) {
+
+        String numero = JOptionPane.showInputDialog("Ingrese el número de pieza:");
+        String descripcion = JOptionPane.showInputDialog("Ingrese la descripción:");
+
+        int cantidad = Integer.parseInt(
+                JOptionPane.showInputDialog("Ingrese la cantidad:")
+        );
+
+        double precio = Double.parseDouble(
+                JOptionPane.showInputDialog("Ingrese el precio por artículo:")
+        );
+
+        factura f = new factura(numero, descripcion, cantidad, precio);
+
+        JOptionPane.showMessageDialog(null,
+                "FACTURA\n\n" + f +
+                        "\nMonto total: $" + f.obtenerFactura()
+        );
+    }
+}
