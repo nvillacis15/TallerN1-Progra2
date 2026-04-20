@@ -1,4 +1,4 @@
-interfaz
+/// interfaz
 package Taller1.deititell12.interfaz;
 
 import Taller1.deititell12.negocio.factura;
@@ -28,4 +28,76 @@ public class PruebaFactura {
                         "\nMonto total: $" + f.obtenerFactura()
         );
     }
+}
+
+///// negocio
+
+package Taller1.deititell12.negocio;
+
+public class factura {
+    private String nPieza;
+    private String descripcion;
+    private int cantidadP;
+    private double precio;
+
+    public factura(String nPieza,String descripcion,int cantidadP, double precio) {
+        this.nPieza = nPieza;
+        this.descripcion = descripcion;
+        this.cantidadP = cantidadP;
+        this.precio = precio;
+
+
+    }
+
+    public double getPrecio() {
+        return precio;
+    }
+
+    public void setPrecio(double precio) {
+        if(precio>0)
+            this.precio = precio;
+        else
+            this.precio=0.0;
+    }
+
+    public int getCantidadP() {
+        return cantidadP;
+    }
+
+    public void setCantidadP(int cantidadP) {
+        if (cantidadP > 0)
+            this.cantidadP =cantidadP;
+        else
+            this.cantidadP = 0;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getnPieza() {
+        return nPieza;
+    }
+
+    public void setnPieza(String nPieza) {
+        this.nPieza = nPieza;
+    }
+
+    public double obtenerFactura(){
+        return cantidadP*precio;
+    }
+
+    @Override
+    public String toString() {
+        return "Número de pieza: "+nPieza+
+                "\nDescripción: "+descripcion+
+                "\nCantidad: "+cantidadP+
+                "\nPrecio del artículo: "+precio+
+                "\nMonto total: " + obtenerFactura();
+    }
+
 }
